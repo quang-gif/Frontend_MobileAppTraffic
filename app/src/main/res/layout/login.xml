@@ -75,7 +75,7 @@
                 android:id="@+id/emailOrPhone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Email hoặc số điện thoại"
+                android:hint="Email hoặc username"
                 android:inputType="textEmailAddress|phone"
                 android:textColor="@color/text_primary"
                 android:textSize="16sp" />
