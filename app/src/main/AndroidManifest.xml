@@ -13,9 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Frontend_MobileAppTraffic">
         <activity
-            android:name=".view.useractivity"
+            android:name=".test"
             android:exported="true"
-            android:label="@string/app_name">
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
