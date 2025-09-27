@@ -1,36 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="160dp"
-    android:background="@color/primary_color"
+    android:layout_height="176dp"
+    android:background="@drawable/appbar_gradient"
     android:orientation="vertical"
     android:padding="16dp"
-    android:gravity="bottom">
+    android:theme="@style/ThemeOverlay.Material3.Dark">
 
     <ImageView
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:src="@drawable/people"
-        android:background="@color/white"
-        android:padding="12dp"
-        android:layout_marginBottom="8dp" />
+        android:id="@+id/imageView"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:src="@drawable/ic_person"
+        android:tint="@color/white" />
 
     <TextView
-        android:id="@+id/navUserName"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Nguyễn Văn A"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        android:textStyle="bold" />
+        android:layout_marginTop="8dp"
+        android:text="TrafficConnect"
+        android:textAppearance="@style/TextAppearance.Material3.HeadlineSmall"
+        android:textColor="@color/white" />
 
     <TextView
-        android:id="@+id/navUserEmail"
-        android:layout_width="wrap_content"
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="user@example.com"
-        android:textColor="@color/white"
-        android:textSize="12sp"
-        android:alpha="0.8" />
+        android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+        android:textColor="@color/white" />
 
 </LinearLayout>
