@@ -1,46 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_profile"
-            android:title="Thông tin cá nhân" />
+    <item
+        android:id="@+id/nav_profile"
 
-        <item
-            android:id="@+id/nav_accident"
-            android:title="Điểm đen tai nạn" />
+        android:title="Thông tin cá nhân" />
 
-        <item
-            android:id="@+id/nav_traffic"
-            android:title="Tình hình giao thông" />
+    <item
+        android:id="@+id/nav_accident"
 
-        <item
-            android:id="@+id/nav_fines"
-            android:title="Tra cứu phạt nguội" />
+        android:title="Điểm đen tai nạn" />
 
-        <item
-            android:id="@+id/nav_chatbot"
-            android:title="Chatbot hỏi luật" />
-    </group>
+    <item
+        android:id="@+id/nav_traffic"
+
+        android:title="Tình hình giao thông" />
+
+    <item
+        android:id="@+id/nav_fines"
+
+        android:title="Tra cứu phạt nguội" />
+
+    <item
+        android:id="@+id/nav_chatbot"
+
+        android:title="Chatbot hỏi luật" />
 
     <item android:title="Cài đặt">
         <menu>
             <item
                 android:id="@+id/nav_settings"
+
                 android:title="Cài đặt" />
 
             <item
                 android:id="@+id/nav_help"
+
                 android:title="Trợ giúp" />
         </menu>
     </item>
 
-    <item android:title="Tài khoản">
-        <menu>
-            <item
-                android:id="@+id/nav_logout"
-                android:title="Đăng xuất" />
-        </menu>
-    </item>
+    <item
+        android:id="@+id/nav_logout"
+
+        android:title="Đăng xuất" />
 
 </menu>

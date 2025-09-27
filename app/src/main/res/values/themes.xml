@@ -4,7 +4,7 @@
         <item name="colorOnPrimary">@color/white</item>
     </style>
     <!-- Base application theme. -->
-    <style name="Base.Theme.Frontend_MobileAppTraffic" parent="Theme.Material3.DayNight">
+    <style name="Base.Theme.Frontend_MobileAppTraffic" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/primary_color</item>
         <item name="colorPrimaryVariant">@color/primary_dark</item>
         <item name="colorOnPrimary">@color/white</item>
@@ -13,6 +13,7 @@
         <item name="colorOnSecondary">@color/black</item>
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
     </style>
+
 
     <style name="Theme.Frontend_MobileAppTraffic" parent="Base.Theme.Frontend_MobileAppTraffic" />
 </resources>

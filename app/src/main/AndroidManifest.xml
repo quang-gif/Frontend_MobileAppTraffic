@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    >
 
     <application
         android:allowBackup="true"
@@ -13,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Frontend_MobileAppTraffic">
         <activity
-            android:name=".Activity"
+            android:name=".view.loginactivity"
             android:exported="true"
             >
             <intent-filter>
@@ -21,8 +22,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".view.chatbotactivity"/>
+        <activity android:name=".view.homeactivity"/>
+        <activity android:name=".view.useractivity"/>
+        <activity
+            android:name=".view.TrafficPostActivity"
+            android:exported="true"/>
+        <activity android:name=".view.FullscreenImageActivity"
+            android:exported="false"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
     </application>
     <uses-permission android:name="android.permission.INTERNET"/>
-
 
 </manifest>

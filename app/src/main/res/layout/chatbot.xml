@@ -10,6 +10,7 @@
 
     <!-- AppBar với gradient hiện đại -->
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/appbar_gradient"
@@ -21,12 +22,12 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@android:color/transparent"
-            app:titleCentered="true"
-            app:title="Chat Bot Luật Giao Thông"
-            app:titleTextColor="@color/white"
+            app:menu="@menu/chat_menu"
             app:navigationIcon="@drawable/ic_arrow_back_rounded"
             app:navigationIconTint="@color/white"
-            app:menu="@menu/chat_menu" />
+            app:title="   Chat Bot Luật Giao Thông"
+            app:titleCentered="true"
+            app:titleTextColor="@color/white" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -35,6 +36,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:background="#E4E4E4"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <!-- Chat RecyclerView -->
@@ -48,7 +50,7 @@
             android:layout_marginBottom="8dp"
             app:cardCornerRadius="16dp"
             app:cardElevation="2dp"
-            app:cardBackgroundColor="@color/surface_container"
+            app:cardBackgroundColor="#E4E4E4"
             app:strokeColor="@color/outline_light"
             app:strokeWidth="1dp">
 
@@ -56,50 +58,11 @@
                 android:id="@+id/chatRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="16dp"
                 android:clipToPadding="false"
                 android:overScrollMode="never"
+                android:padding="16dp"
                 tools:listitem="@layout/item_message_user" />
 
-        </com.google.android.material.card.MaterialCardView>
-
-        <!-- Khu vực câu hỏi gợi ý -->
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="8dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="1dp"
-            app:cardBackgroundColor="@color/surface_container_low"
-            app:strokeColor="@color/outline_light"
-            app:strokeWidth="0.5dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="12dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="💡 Câu hỏi nhanh"
-                    android:textColor="@color/primary_dark"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:paddingBottom="8dp" />
-
-                <com.google.android.material.chip.ChipGroup
-                    android:id="@+id/quickQuestionsChipGroup"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:chipSpacing="8dp"
-                    app:singleLine="false"
-                    app:singleSelection="false" />
-
-            </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
         <!-- Thanh nhập tin nhắn -->

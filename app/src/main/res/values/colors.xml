@@ -39,4 +39,8 @@
     <!-- Màu chat -->
     <color name="chat_message_background">#F0F0F0</color>
     <color name="chat_input_background">#F8F8F8</color>
+
+
+    <color name="warning_color">#FF9800</color>
+    <color name="error_color">#F44336</color>
 </resources>
