@@ -1,5 +1,6 @@
 package com.example.frontend_mobileapptraffic.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -30,19 +31,37 @@ public class TrafficPostActivity extends AppCompatActivity implements TrafficPos
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activitytrafficpost);
 
+        // Init Presenter trước
+        presenter = new TrafficPostPresenter(this, this);
+
+        // RecyclerView
         recyclerView = findViewById(R.id.recyclerViewPosts);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new TrafficPostAdapter(this, postList);
+        adapter = new TrafficPostAdapter(this, postList, presenter);
         recyclerView.setAdapter(adapter);
 
+        // Toolbar
         topAppBar = findViewById(R.id.toolbar);
         topAppBar.setNavigationOnClickListener(v -> finish());
 
-        presenter = new TrafficPostPresenter(this, this);
+        // FloatingActionButton → mở CreatePostActivity
+        findViewById(R.id.fabAddPost).setOnClickListener(v -> {
+            Intent intent = new Intent(TrafficPostActivity.this, CreatePostActivity.class);
+            startActivity(intent);
+        });
 
-        // gọi API lấy danh sách post
+        // Load bài viết
         presenter.loadPosts();
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Mỗi lần quay lại màn hình sẽ reload post mới
+        presenter.loadPosts();
+    }
+
+    // -------------------- Interface Implement --------------------
 
     @Override
     public void onPostsLoaded(List<TrafficPost> posts) {
@@ -58,7 +77,8 @@ public class TrafficPostActivity extends AppCompatActivity implements TrafficPos
 
     @Override
     public void onPostLiked(int position) {
-        Toast.makeText(this, "Đã thích bài viết " + position, Toast.LENGTH_SHORT).show();
+        // Sau khi backend xử lý xong → refresh lại danh sách
+        presenter.loadPosts();
     }
 
     @Override
@@ -68,8 +88,10 @@ public class TrafficPostActivity extends AppCompatActivity implements TrafficPos
 
     @Override
     public void onPostDeleted(int position) {
-        postList.remove(position);
-        adapter.notifyItemRemoved(position);
-        Toast.makeText(this, "Đã xóa bài viết", Toast.LENGTH_SHORT).show();
+        if (position >= 0 && position < postList.size()) {
+            postList.remove(position);
+            adapter.notifyItemRemoved(position);
+            Toast.makeText(this, "Đã xóa bài viết", Toast.LENGTH_SHORT).show();
+        }
     }
 }

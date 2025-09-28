@@ -3,20 +3,22 @@ package com.example.frontend_mobileapptraffic.model;
 import java.util.List;
 
 public class TrafficPost {
-    private long idPost;
+    private Long idPost;
     private String content;
+    private String timestamp;
     private String location;
-    private String timestamp;   // 👉 để String cho dễ parse
     private String username;
-    private String status;
+    private int likeTotal;
     private List<String> imageUrls;
 
-    // Getters & Setters
-    public long getIdPost() {
+    // ⚡ Thêm field này để quản lý trạng thái like của người dùng
+    private boolean likedByUser;
+
+    public Long getIdPost() {
         return idPost;
     }
 
-    public void setIdPost(long idPost) {
+    public void setIdPost(Long idPost) {
         this.idPost = idPost;
     }
 
@@ -28,20 +30,20 @@ public class TrafficPost {
         this.content = content;
     }
 
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
     public String getTimestamp() {
         return timestamp;
     }
 
     public void setTimestamp(String timestamp) {
         this.timestamp = timestamp;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public String getUsername() {
@@ -52,12 +54,12 @@ public class TrafficPost {
         this.username = username;
     }
 
-    public String getStatus() {
-        return status;
+    public int getLikeTotal() {
+        return likeTotal;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setLikeTotal(int likeTotal) {
+        this.likeTotal = likeTotal;
     }
 
     public List<String> getImageUrls() {
@@ -66,5 +68,14 @@ public class TrafficPost {
 
     public void setImageUrls(List<String> imageUrls) {
         this.imageUrls = imageUrls;
+    }
+
+    // ✅ Getter/Setter cho trạng thái Like
+    public boolean isLikedByUser() {
+        return likedByUser;
+    }
+
+    public void setLikedByUser(boolean likedByUser) {
+        this.likedByUser = likedByUser;
     }
 }

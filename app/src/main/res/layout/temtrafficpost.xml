@@ -13,7 +13,7 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <!-- Header với username và thời gian -->
+        <!-- Header -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -30,7 +30,7 @@
                 android:id="@+id/btnUsername"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="6dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:text="Username"
                 android:textAllCaps="false"
@@ -46,7 +46,7 @@
                 android:id="@+id/tvTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2 giờ trước"
+                android:text="27/09/2025 10:30"
                 android:textColor="@color/text_secondary"
                 android:textSize="12sp" />
 
@@ -61,13 +61,13 @@
 
         </LinearLayout>
 
-        <!-- Địa điểm -->
+        <!-- Location -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center_vertical"
-            android:layout_marginTop="8dp">
+            android:layout_marginTop="6dp">
 
             <ImageView
                 android:layout_width="16dp"
@@ -86,48 +86,41 @@
 
         </LinearLayout>
 
-        <!-- Nội dung bài đăng -->
+        <!-- Content -->
         <TextView
             android:id="@+id/tvContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="10dp"
             android:text="Nội dung bài đăng..."
             android:textColor="@color/text_primary"
             android:textSize="14sp"
             android:lineSpacingExtra="4dp" />
 
-        <!-- Horizontal RecyclerView cho hình ảnh -->
+        <!-- Images -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewImages"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_marginTop="12dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="10dp"
+            android:clipToPadding="false"
             android:visibility="gone" />
 
-        <!-- Trạng thái giao thông -->
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chipStatus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="Thông thoáng"
-            app:chipBackgroundColor="@color/success_color" />
-
-        <!-- Actions (Like, Report) -->
+        <!-- Actions -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="16dp">
+            android:layout_marginTop="12dp"
+            android:gravity="center_vertical">
 
+            <!-- Like button -->
             <Button
                 android:id="@+id/btnLike"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:drawableStart="@drawable/ic_thumb_up_outline"
-                android:text=""
+                android:text="👍 0"
                 android:textAllCaps="false"
                 android:textColor="@color/text_secondary"
                 style="@style/Widget.Material3.Button.TextButton" />
@@ -137,6 +130,7 @@
                 android:layout_height="1dp"
                 android:layout_weight="1" />
 
+            <!-- Report button -->
             <Button
                 android:id="@+id/btnReport"
                 android:layout_width="wrap_content"

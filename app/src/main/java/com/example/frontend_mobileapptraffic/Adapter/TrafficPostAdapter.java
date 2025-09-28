@@ -11,10 +11,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.frontend_mobileapptraffic.Presenter.TrafficPostPresenter;
 import com.example.frontend_mobileapptraffic.R;
 import com.example.frontend_mobileapptraffic.model.TrafficPost;
 import com.example.frontend_mobileapptraffic.view.FullscreenImageActivity;
@@ -24,12 +26,14 @@ import java.util.List;
 
 public class TrafficPostAdapter extends RecyclerView.Adapter<TrafficPostAdapter.PostViewHolder> {
 
-    private Context context;
-    private List<TrafficPost> postList;
+    private final Context context;
+    private final List<TrafficPost> postList;
+    private final TrafficPostPresenter presenter;
 
-    public TrafficPostAdapter(Context context, List<TrafficPost> postList) {
+    public TrafficPostAdapter(Context context, List<TrafficPost> postList, TrafficPostPresenter presenter) {
         this.context = context;
         this.postList = postList;
+        this.presenter = presenter;
     }
 
     @NonNull
@@ -46,7 +50,7 @@ public class TrafficPostAdapter extends RecyclerView.Adapter<TrafficPostAdapter.
         // Username
         holder.btnUsername.setText(post.getUsername());
 
-        // Thời gian
+        // Time
         if (post.getTimestamp() != null && !post.getTimestamp().isEmpty()) {
             holder.tvTime.setText(formatTimestamp(post.getTimestamp()));
         } else {
@@ -56,10 +60,10 @@ public class TrafficPostAdapter extends RecyclerView.Adapter<TrafficPostAdapter.
         // Location
         holder.tvLocation.setText(post.getLocation());
 
-        // Nội dung
+        // Content
         holder.tvContent.setText(post.getContent());
 
-        // Ảnh
+        // Images
         if (post.getImageUrls() != null && !post.getImageUrls().isEmpty()) {
             holder.recyclerViewImages.setVisibility(View.VISIBLE);
             ImageAdapter imageAdapter = new ImageAdapter(context, post.getImageUrls());
@@ -70,6 +74,27 @@ public class TrafficPostAdapter extends RecyclerView.Adapter<TrafficPostAdapter.
         } else {
             holder.recyclerViewImages.setVisibility(View.GONE);
         }
+
+        // Update trạng thái Like
+        updateLikeUI(holder.btnLike, post);
+
+        // Sự kiện Like
+        holder.btnLike.setOnClickListener(v -> {
+            int adapterPos = holder.getAdapterPosition();
+            if (adapterPos == RecyclerView.NO_POSITION) return;
+
+            presenter.toggleLike(post.getIdPost(), adapterPos);
+
+            // Optimistic update (cập nhật ngay trên UI)
+            if (post.isLikedByUser()) {
+                post.setLikedByUser(false);
+                post.setLikeTotal(Math.max(0, post.getLikeTotal() - 1));
+            } else {
+                post.setLikedByUser(true);
+                post.setLikeTotal(post.getLikeTotal() + 1);
+            }
+            notifyItemChanged(adapterPos);
+        });
     }
 
     @Override
@@ -77,7 +102,7 @@ public class TrafficPostAdapter extends RecyclerView.Adapter<TrafficPostAdapter.
         return postList != null ? postList.size() : 0;
     }
 
-
+    // ----------------- ViewHolder -----------------
     public static class PostViewHolder extends RecyclerView.ViewHolder {
         Button btnUsername, btnReport, btnLike;
         TextView tvTime, tvLocation, tvContent;
@@ -97,10 +122,10 @@ public class TrafficPostAdapter extends RecyclerView.Adapter<TrafficPostAdapter.
         }
     }
 
-    // Adapter cho danh sách ảnh
+    // ----------------- Image Adapter -----------------
     static class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHolder> {
-        private Context context;
-        private List<String> imageUrls;
+        private final Context context;
+        private final List<String> imageUrls;
 
         ImageAdapter(Context context, List<String> imageUrls) {
             this.context = context;
@@ -116,15 +141,14 @@ public class TrafficPostAdapter extends RecyclerView.Adapter<TrafficPostAdapter.
 
         @Override
         public void onBindViewHolder(@NonNull ImageViewHolder holder, int position) {
-            String url = imageUrls.get(position);
-
+            String url = imageUrls.get(position) != null ? imageUrls.get(position) : "";
             Glide.with(context)
                     .load(url)
                     .placeholder(R.drawable.ic_image_placeholder)
                     .error(R.drawable.ic_image_placeholder)
+                    .centerCrop()
                     .into(holder.ivPostImage);
 
-            // Sự kiện click vào ảnh
             holder.ivPostImage.setOnClickListener(v -> {
                 Intent intent = new Intent(context, FullscreenImageActivity.class);
                 intent.putStringArrayListExtra("images", new ArrayList<>(imageUrls));
@@ -132,7 +156,6 @@ public class TrafficPostAdapter extends RecyclerView.Adapter<TrafficPostAdapter.
                 context.startActivity(intent);
             });
         }
-
 
         @Override
         public int getItemCount() {
@@ -148,16 +171,23 @@ public class TrafficPostAdapter extends RecyclerView.Adapter<TrafficPostAdapter.
         }
     }
 
-    // Format timestamp (ISO → dd/MM/yyyy HH:mm)
+    // ----------------- Helper -----------------
+    private void updateLikeUI(Button btnLike, TrafficPost post) {
+        btnLike.setText("👍 " + post.getLikeTotal());
+        int color = post.isLikedByUser()
+                ? ContextCompat.getColor(context, R.color.primary_color)
+                : ContextCompat.getColor(context, R.color.text_secondary);
+        btnLike.setTextColor(color);
+    }
+
     private String formatTimestamp(String isoString) {
         try {
-            // Ví dụ: 2025-09-27T10:30:00 → 27/09/2025 10:30
             String date = isoString.substring(0, 10);  // yyyy-MM-dd
             String time = isoString.substring(11, 16); // HH:mm
             String[] parts = date.split("-");
             return parts[2] + "/" + parts[1] + "/" + parts[0] + " " + time;
         } catch (Exception e) {
-            return isoString; // fallback hiển thị raw string
+            return isoString;
         }
     }
 }

@@ -9,10 +9,15 @@ import com.example.frontend_mobileapptraffic.model.TrafficPost;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -21,6 +26,10 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.Multipart;
+import retrofit2.http.POST;
+import retrofit2.http.Part;
+import retrofit2.http.Path;
 
 import static com.example.frontend_mobileapptraffic.BuildConfig.BASE_URL;
 
@@ -28,13 +37,11 @@ public class TrafficPostPresenter {
 
     private static final String TAG = "TRAFFIC_POST";
 
-    private Context context;
-    private TrafficPostView view;
-    private Api api;
+    private final Context context;
+    private final TrafficPostView view;
+    private final Api api;
 
-
-
-    // View interface để Activity implement
+    // --------- View interface ---------
     public interface TrafficPostView {
         void onPostsLoaded(List<TrafficPost> posts);
         void onPostsLoadError(String errorMessage);
@@ -43,14 +50,27 @@ public class TrafficPostPresenter {
         void onPostDeleted(int position);
     }
 
-    // Retrofit API interface
+    // --------- API interface ---------
     interface Api {
-        @GET("TrafficPost")   // 👉 endpoint backend bạn build
-        Call<ResponseBody> getPosts(
-                @Header("Authorization") String token
+        @GET("TrafficPost")
+        Call<ResponseBody> getPosts(@Header("Authorization") String token);
+
+        @POST("TrafficPost/Like/{trafficPostId}")
+        Call<ResponseBody> likePost(
+                @Header("Authorization") String token,
+                @Path("trafficPostId") long trafficPostId
+        );
+
+        @Multipart
+        @POST("TrafficPost")
+        Call<ResponseBody> createPost(
+                @Header("Authorization") String token,
+                @Part("TrafficPost") RequestBody trafficPostJson,
+                @Part MultipartBody.Part file
         );
     }
 
+    // --------- Constructor ---------
     public TrafficPostPresenter(Context context, TrafficPostView view) {
         this.context = context;
         this.view = view;
@@ -66,17 +86,15 @@ public class TrafficPostPresenter {
         api = retrofit.create(Api.class);
     }
 
-    // Load danh sách bài đăng
+    // --------- Load posts ---------
     public void loadPosts() {
-        SharedPreferences prefs = context.getSharedPreferences("token", Context.MODE_PRIVATE);
-        String token = prefs.getString("JWT_TOKEN", null);
-
+        String token = getToken();
         if (token == null) {
-            view.onPostsLoadError("Chưa đăng nhập hoặc chưa có token!");
+            if (view != null) view.onPostsLoadError("Chưa đăng nhập!");
             return;
         }
 
-        api.getPosts("Bearer " + token).enqueue(new Callback<ResponseBody>() {
+        api.getPosts("Bearer " + token).enqueue(new Callback<>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 try {
@@ -84,38 +102,115 @@ public class TrafficPostPresenter {
                         String respStr = response.body().string();
                         JSONObject json = new JSONObject(respStr);
 
-                        boolean success = json.optBoolean("success", false);
-                        if (success) {
+                        if (json.optBoolean("success", false)) {
                             JSONArray dataArray = json.optJSONArray("data");
                             List<TrafficPost> posts = parsePosts(dataArray);
-                            view.onPostsLoaded(posts);
+                            if (view != null) view.onPostsLoaded(posts);
                         } else {
-                            String msg = json.optString("message", "API trả về thất bại");
-                            view.onPostsLoadError("Lỗi: " + msg);
+                            String msg = json.optString("message", "API thất bại");
+                            if (view != null) view.onPostsLoadError(msg);
                         }
                     } else {
-                        view.onPostsLoadError("Lỗi server: " + response.code());
+                        if (view != null) view.onPostsLoadError("Lỗi server: " + response.code());
                         Log.e(TAG, "Error code: " + response.code());
                     }
                 } catch (Exception e) {
-                    view.onPostsLoadError("Parse lỗi: " + e.getMessage());
+                    if (view != null) view.onPostsLoadError("Parse lỗi: " + e.getMessage());
                     Log.e(TAG, "Parse error", e);
                 }
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                view.onPostsLoadError("Kết nối thất bại: " + t.getMessage());
+                if (view != null) view.onPostsLoadError("Kết nối thất bại: " + t.getMessage());
                 Log.e(TAG, "Call failed", t);
             }
         });
     }
 
-    // Parse JSON -> List<TrafficPost>
+    // --------- Create post ---------
+    public void createPost(String content, String location, String timestamp,
+                           File imageFile, Runnable onSuccess, Consumer<String> onError) {
+
+        String token = getToken();
+        if (token == null) {
+            onError.accept("Chưa đăng nhập!");
+            return;
+        }
+
+        RequestBody requestFile = RequestBody.create(MediaType.parse("image/jpeg"), imageFile);
+        MultipartBody.Part body = MultipartBody.Part.createFormData("file", imageFile.getName(), requestFile);
+
+        String trafficPostJson = "{"
+                + "\"content\":\"" + content + "\","
+                + "\"location\":\"" + location + "\","
+                + "\"timestamp\":\"" + timestamp + "\""
+                + "}";
+
+        RequestBody trafficPostBody = RequestBody.create(MediaType.parse("application/json"), trafficPostJson);
+
+        api.createPost("Bearer " + token, trafficPostBody, body).enqueue(new Callback<>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.isSuccessful()) {
+                    onSuccess.run();
+                    loadPosts(); // refresh list
+                } else {
+                    onError.accept("Lỗi server: " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                onError.accept("Kết nối thất bại: " + t.getMessage());
+            }
+        });
+    }
+
+    // --------- Like post ---------
+    public void toggleLike(long postId, int position) {
+        String token = getToken();
+        if (token == null) {
+            if (view != null) view.onPostsLoadError("Chưa đăng nhập!");
+            return;
+        }
+
+        api.likePost("Bearer " + token, postId).enqueue(new Callback<>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.isSuccessful()) {
+                    if (view != null) view.onPostLiked(position);
+                    loadPosts(); // refresh like count
+                } else {
+                    if (view != null) view.onPostsLoadError("Lỗi server khi like: " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                if (view != null) view.onPostsLoadError("Kết nối thất bại khi like: " + t.getMessage());
+            }
+        });
+    }
+
+    // --------- Report & Delete (mock local) ---------
+    public void reportPost(int position) {
+        if (view != null) view.onPostReported(position);
+    }
+
+    public void deletePost(int position) {
+        if (view != null) view.onPostDeleted(position);
+    }
+
+    // --------- Helper ---------
+    private String getToken() {
+        SharedPreferences prefs = context.getSharedPreferences("token", Context.MODE_PRIVATE);
+        return prefs.getString("JWT_TOKEN", null);
+    }
+
     private List<TrafficPost> parsePosts(JSONArray dataArray) {
         List<TrafficPost> posts = new ArrayList<>();
         if (dataArray == null) return posts;
-
         try {
             for (int i = 0; i < dataArray.length(); i++) {
                 JSONObject postJson = dataArray.getJSONObject(i);
@@ -126,8 +221,8 @@ public class TrafficPostPresenter {
                 post.setLocation(postJson.optString("location", ""));
                 post.setTimestamp(postJson.optString("timestamp", ""));
                 post.setUsername(postJson.optString("username", ""));
+                post.setLikeTotal(postJson.optInt("likeTotal", 0));
 
-                // Lấy danh sách ảnh
                 JSONArray imagesArray = postJson.optJSONArray("imageUrls");
                 if (imagesArray != null) {
                     List<String> imageUrls = new ArrayList<>();
@@ -136,26 +231,11 @@ public class TrafficPostPresenter {
                     }
                     post.setImageUrls(imageUrls);
                 }
-
                 posts.add(post);
             }
         } catch (Exception e) {
-            Log.e(TAG, "Error parsing posts", e);
+            Log.e(TAG, "Parse error", e);
         }
-
         return posts;
-    }
-
-    // Các hành động với bài viết (sau có thể call API riêng)
-    public void likePost(int position) {
-        view.onPostLiked(position);
-    }
-
-    public void reportPost(int position) {
-        view.onPostReported(position);
-    }
-
-    public void deletePost(int position) {
-        view.onPostDeleted(position);
     }
 }
