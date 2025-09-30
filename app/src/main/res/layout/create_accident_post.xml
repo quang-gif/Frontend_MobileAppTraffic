@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@android:color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Tiêu đề với nền xanh trời và bo góc -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/posttraficc_dangbai_background_blue"
+            android:paddingVertical="12dp"
+            android:gravity="center"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Đăng điểm đen giao thông"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+
+        <!-- EditText với khung bo góc -->
+        <EditText
+            android:id="@+id/etContent_ap"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nhập nội dung tình hình giao thông..."
+            android:minHeight="120dp"
+            android:gravity="top|start"
+            android:padding="16dp"
+            android:inputType="textMultiLine"
+            android:scrollbars="vertical"
+            android:background="@drawable/posttraffic_khung_edt"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Khu vực hiển thị ảnh -->
+        <LinearLayout
+            android:id="@+id/layoutImages_ap"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp"
+            android:gravity="center">
+
+            <!-- Ảnh 1 -->
+            <FrameLayout
+                android:id="@+id/frameImage_ap1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/ivPreview_ap1"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    android:contentDescription="Ảnh 1"
+                    android:background="@drawable/posttraffic_khung_image" />
+
+                <ImageButton
+                    android:id="@+id/btnRemove_ap1"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/ic_close"
+                    android:background="@drawable/rounded_remove_button"
+                    android:layout_gravity="end|top"
+                    android:layout_margin="4dp"
+                    app:tint="@android:color/white" />
+            </FrameLayout>
+
+            <!-- Ảnh 2 -->
+            <FrameLayout
+                android:id="@+id/frameImage_ap2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/ivPreview_ap2"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    android:contentDescription="Ảnh 2"
+                    android:background="@drawable/posttraffic_khung_image" />
+
+                <ImageButton
+                    android:id="@+id/btnRemove_ap2"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/ic_close"
+                    android:background="@drawable/rounded_remove_button"
+                    android:layout_gravity="end|top"
+                    android:layout_margin="4dp"
+                    app:tint="@android:color/white" />
+            </FrameLayout>
+        </LinearLayout>
+
+        <!-- Nút chụp ảnh với icon camera -->
+        <Button
+            android:id="@+id/btnTakePhoto_ap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Chụp ảnh"
+            android:drawableStart="@drawable/ic_camera"
+            android:drawablePadding="8dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/posttraficc_dangbai_background_blue"
+            android:textColor="@android:color/white"
+            android:paddingHorizontal="24dp"
+            android:paddingVertical="12dp" />
+
+        <Button
+            android:id="@+id/btnPickPhoto_ap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Chọn ảnh"
+            android:drawableStart="@drawable/ic_gallery"
+            android:drawablePadding="8dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/posttraficc_dangbai_background_blue"
+            android:textColor="@android:color/white"
+            android:paddingHorizontal="24dp"
+            android:paddingVertical="12dp" />
+
+        <!-- Thông tin địa chỉ với khung bo góc -->
+        <TextView
+            android:id="@+id/tvAddress_ap"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Địa chỉ sẽ hiển thị ở đây sau khi chụp ảnh"
+            android:textColor="@color/text_secondary"
+            android:textSize="14sp"
+            android:background="@drawable/posttraffic_khung_info"
+            android:padding="12dp" />
+
+        <!-- Thông tin thời gian với khung bo góc -->
+        <TextView
+            android:id="@+id/tvTime_ap"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Thời gian sẽ hiển thị ở đây"
+            android:textColor="@color/text_secondary"
+            android:textSize="14sp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/posttraffic_khung_info"
+            android:padding="12dp" />
+
+        <!-- Nút đăng bài (giữ nguyên) -->
+        <Button
+            android:id="@+id/btnPost_ap"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Đăng bài"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/posttraficc_dangbai_background_blue"
+            android:textColor="@android:color/white"
+            android:paddingVertical="12dp" />
+
+    </LinearLayout>
+</ScrollView>
