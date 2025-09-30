@@ -8,6 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.frontend_mobileapptraffic.Adapter.TrafficPostAdapter;
 import com.example.frontend_mobileapptraffic.Presenter.TrafficPostPresenter;
@@ -25,14 +26,21 @@ public class TrafficPostActivity extends AppCompatActivity implements TrafficPos
     private List<TrafficPost> postList = new ArrayList<>();
     private TrafficPostPresenter presenter;
     private MaterialToolbar topAppBar;
+    private SwipeRefreshLayout swipeRefreshLayout; // <-- thêm mới
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activitytrafficpost);
 
-        // Init Presenter trước
+        // Init Presenter
         presenter = new TrafficPostPresenter(this, this);
+
+        // SwipeRefreshLayout
+        swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
+        swipeRefreshLayout.setOnRefreshListener(() -> {
+            presenter.loadPosts(); // Vuốt để reload
+        });
 
         // RecyclerView
         recyclerView = findViewById(R.id.recyclerViewPosts);
@@ -50,7 +58,7 @@ public class TrafficPostActivity extends AppCompatActivity implements TrafficPos
             startActivity(intent);
         });
 
-        // Load bài viết
+        // Load bài viết lần đầu
         presenter.loadPosts();
     }
 
@@ -68,11 +76,21 @@ public class TrafficPostActivity extends AppCompatActivity implements TrafficPos
         postList.clear();
         postList.addAll(posts);
         adapter.notifyDataSetChanged();
+
+        // Tắt vòng xoay loading nếu đang hiển thị
+        if (swipeRefreshLayout.isRefreshing()) {
+            swipeRefreshLayout.setRefreshing(false);
+        }
     }
 
     @Override
     public void onPostsLoadError(String errorMessage) {
         Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show();
+
+        // Tắt vòng xoay loading khi lỗi
+        if (swipeRefreshLayout.isRefreshing()) {
+            swipeRefreshLayout.setRefreshing(false);
+        }
     }
 
     @Override
@@ -84,6 +102,7 @@ public class TrafficPostActivity extends AppCompatActivity implements TrafficPos
     @Override
     public void onPostReported(int position) {
         Toast.makeText(this, "Đã báo cáo bài viết " + position, Toast.LENGTH_SHORT).show();
+        presenter.loadPosts();
     }
 
     @Override

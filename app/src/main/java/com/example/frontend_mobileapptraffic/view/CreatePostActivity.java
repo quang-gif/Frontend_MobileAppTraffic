@@ -1,30 +1,33 @@
 package com.example.frontend_mobileapptraffic.view;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
 import android.location.Address;
 import android.location.Geocoder;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.content.Intent;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.FileProvider;
 
+import com.bumptech.glide.Glide;
 import com.example.frontend_mobileapptraffic.Presenter.TrafficPostPresenter;
 import com.example.frontend_mobileapptraffic.R;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -35,11 +38,17 @@ public class CreatePostActivity extends AppCompatActivity {
     private static final int REQUEST_LOCATION = 200;
 
     private EditText etContent;
-    private ImageView ivPreview;
     private TextView tvAddress, tvTime;
     private Button btnTakePhoto, btnPost;
 
-    private Bitmap capturedPhoto;
+    private ImageView ivPreview1, ivPreview2;
+    private ImageButton btnRemove1, btnRemove2;
+    private android.view.View frameImage1, frameImage2;
+
+    private Uri photoUri;
+    private File photoFile;
+    private final List<File> photoFiles = new ArrayList<>();
+
     private String currentAddress = "";
     private String currentTime = "";
 
@@ -50,16 +59,28 @@ public class CreatePostActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create__traffic_post);
 
+        // Khởi tạo view
         etContent = findViewById(R.id.etContent);
-        ivPreview = findViewById(R.id.ivPreview);
         tvAddress = findViewById(R.id.tvAddress);
         tvTime = findViewById(R.id.tvTime);
         btnTakePhoto = findViewById(R.id.btnTakePhoto);
         btnPost = findViewById(R.id.btnPost);
 
+        frameImage1 = findViewById(R.id.frameImage1);
+        frameImage2 = findViewById(R.id.frameImage2);
+        ivPreview1 = findViewById(R.id.ivPreview1);
+        ivPreview2 = findViewById(R.id.ivPreview2);
+        btnRemove1 = findViewById(R.id.btnRemove1);
+        btnRemove2 = findViewById(R.id.btnRemove2);
+
         presenter = new TrafficPostPresenter(this, null);
 
+        // Nút chụp ảnh
         btnTakePhoto.setOnClickListener(v -> {
+            if (photoFiles.size() >= 2) {
+                Toast.makeText(this, "Chỉ được chọn tối đa 2 ảnh", Toast.LENGTH_SHORT).show();
+                return;
+            }
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
                     != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(this,
@@ -69,35 +90,75 @@ public class CreatePostActivity extends AppCompatActivity {
             }
         });
 
+        // Nút đăng bài
         btnPost.setOnClickListener(v -> uploadPost());
+
+        // Xóa ảnh 1
+        btnRemove1.setOnClickListener(v -> {
+            if (!photoFiles.isEmpty()) {
+                photoFiles.remove(0);
+                frameImage1.setVisibility(android.view.View.GONE);
+
+                // Nếu còn ảnh thứ 2 thì dồn về ảnh 1
+                if (photoFiles.size() == 1) {
+                    File f = photoFiles.get(0);
+                    frameImage1.setVisibility(android.view.View.VISIBLE);
+                    Glide.with(this).load(f).into(ivPreview1);
+                    frameImage2.setVisibility(android.view.View.GONE);
+                }
+            }
+        });
+
+        // Xóa ảnh 2
+        btnRemove2.setOnClickListener(v -> {
+            if (photoFiles.size() == 2) {
+                photoFiles.remove(1);
+                frameImage2.setVisibility(android.view.View.GONE);
+            }
+        });
     }
 
     private void openCamera() {
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if (intent.resolveActivity(getPackageManager()) != null) {
+        try {
+            photoFile = new File(getExternalFilesDir(
+                    android.os.Environment.DIRECTORY_PICTURES),
+                    "photo_" + System.currentTimeMillis() + ".jpg");
+
+            photoUri = FileProvider.getUriForFile(
+                    this,
+                    getPackageName() + ".provider",
+                    photoFile
+            );
+
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
             startActivityForResult(intent, REQUEST_CAMERA);
-        } else {
-            Toast.makeText(this, "Không tìm thấy ứng dụng camera", Toast.LENGTH_SHORT).show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(this, "Không thể mở camera", Toast.LENGTH_SHORT).show();
         }
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CAMERA && resultCode == RESULT_OK) {
-            if (data != null && data.getExtras() != null) {
-                Object obj = data.getExtras().get("data");
-                if (obj instanceof Bitmap) {
-                    capturedPhoto = (Bitmap) obj;
-                    ivPreview.setImageBitmap(capturedPhoto);
+            if (photoFile != null && photoFile.exists()) {
+                photoFiles.add(photoFile);
 
-                    currentTime = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
-                            .format(new Date());
-
-                    getLocationAndAddress();
-                } else {
-                    Toast.makeText(this, "Không lấy được ảnh từ camera", Toast.LENGTH_SHORT).show();
+                if (photoFiles.size() == 1) {
+                    frameImage1.setVisibility(android.view.View.VISIBLE);
+                    Glide.with(this).load(photoFile).into(ivPreview1);
+                } else if (photoFiles.size() == 2) {
+                    frameImage2.setVisibility(android.view.View.VISIBLE);
+                    Glide.with(this).load(photoFile).into(ivPreview2);
                 }
+
+                currentTime = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
+                        .format(new Date());
+
+                getLocationAndAddress();
             }
         }
     }
@@ -137,15 +198,19 @@ public class CreatePostActivity extends AppCompatActivity {
             if (addresses != null && !addresses.isEmpty()) {
                 return addresses.get(0).getAddressLine(0);
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return "Không tìm thấy địa chỉ";
     }
 
     private void uploadPost() {
-        if (capturedPhoto == null) {
-            Toast.makeText(this, "Vui lòng chụp ảnh trước khi đăng", Toast.LENGTH_SHORT).show();
+        if (photoFiles.isEmpty()) {
+            Toast.makeText(this, "Vui lòng chụp ít nhất 1 ảnh", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (photoFiles.size() > 2) {
+            Toast.makeText(this, "Chỉ được tải lên tối đa 2 ảnh", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -155,20 +220,8 @@ public class CreatePostActivity extends AppCompatActivity {
             return;
         }
 
-        // Bitmap -> File
-        File file = new File(getCacheDir(), "upload.jpg");
-        try {
-            FileOutputStream fos = new FileOutputStream(file);
-            capturedPhoto.compress(Bitmap.CompressFormat.JPEG, 100, fos);
-            fos.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-            Toast.makeText(this, "Lỗi khi lưu ảnh", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        // Call presenter
-        presenter.createPost(content, currentAddress, currentTime, file,
+        // Gọi presenter với list ảnh
+        presenter.createPost(content, currentAddress, currentTime, photoFiles,
                 () -> {
                     Toast.makeText(this, "Đăng bài thành công!", Toast.LENGTH_SHORT).show();
                     finish();

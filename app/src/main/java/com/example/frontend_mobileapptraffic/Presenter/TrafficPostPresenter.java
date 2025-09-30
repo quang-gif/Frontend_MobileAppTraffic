@@ -66,7 +66,7 @@ public class TrafficPostPresenter {
         Call<ResponseBody> createPost(
                 @Header("Authorization") String token,
                 @Part("TrafficPost") RequestBody trafficPostJson,
-                @Part MultipartBody.Part file
+                @Part List<MultipartBody.Part> files
         );
     }
 
@@ -130,7 +130,7 @@ public class TrafficPostPresenter {
 
     // --------- Create post ---------
     public void createPost(String content, String location, String timestamp,
-                           File imageFile, Runnable onSuccess, Consumer<String> onError) {
+                           List<File> imageFiles, Runnable onSuccess, Consumer<String> onError) {
 
         String token = getToken();
         if (token == null) {
@@ -138,18 +138,28 @@ public class TrafficPostPresenter {
             return;
         }
 
-        RequestBody requestFile = RequestBody.create(MediaType.parse("image/jpeg"), imageFile);
-        MultipartBody.Part body = MultipartBody.Part.createFormData("file", imageFile.getName(), requestFile);
+        // Chuẩn bị danh sách file
+        List<MultipartBody.Part> parts = new ArrayList<>();
+        if (imageFiles != null) {
+            for (File file : imageFiles) {
+                RequestBody requestFile = RequestBody.create(MediaType.parse("image/jpeg"), file);
+                parts.add(MultipartBody.Part.createFormData("file", file.getName(), requestFile));
+            }
+        }
 
+        // JSON metadata
         String trafficPostJson = "{"
                 + "\"content\":\"" + content + "\","
                 + "\"location\":\"" + location + "\","
                 + "\"timestamp\":\"" + timestamp + "\""
                 + "}";
 
-        RequestBody trafficPostBody = RequestBody.create(MediaType.parse("application/json"), trafficPostJson);
+        RequestBody trafficPostBody = RequestBody.create(
+                MediaType.parse("application/json"),
+                trafficPostJson
+        );
 
-        api.createPost("Bearer " + token, trafficPostBody, body).enqueue(new Callback<>() {
+        api.createPost("Bearer " + token, trafficPostBody, parts).enqueue(new Callback<>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful()) {

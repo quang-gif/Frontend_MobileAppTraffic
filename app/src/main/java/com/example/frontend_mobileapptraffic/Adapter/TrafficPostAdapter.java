@@ -8,14 +8,19 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.frontend_mobileapptraffic.Presenter.ReportPresenter;
 import com.example.frontend_mobileapptraffic.Presenter.TrafficPostPresenter;
 import com.example.frontend_mobileapptraffic.R;
 import com.example.frontend_mobileapptraffic.model.TrafficPost;
@@ -75,17 +80,15 @@ public class TrafficPostAdapter extends RecyclerView.Adapter<TrafficPostAdapter.
             holder.recyclerViewImages.setVisibility(View.GONE);
         }
 
-        // Update trạng thái Like
+        // Like button
         updateLikeUI(holder.btnLike, post);
-
-        // Sự kiện Like
         holder.btnLike.setOnClickListener(v -> {
             int adapterPos = holder.getAdapterPosition();
             if (adapterPos == RecyclerView.NO_POSITION) return;
 
             presenter.toggleLike(post.getIdPost(), adapterPos);
 
-            // Optimistic update (cập nhật ngay trên UI)
+            // Optimistic update (UI cập nhật ngay)
             if (post.isLikedByUser()) {
                 post.setLikedByUser(false);
                 post.setLikeTotal(Math.max(0, post.getLikeTotal() - 1));
@@ -95,6 +98,81 @@ public class TrafficPostAdapter extends RecyclerView.Adapter<TrafficPostAdapter.
             }
             notifyItemChanged(adapterPos);
         });
+
+        // Report button
+        holder.btnReport.setOnClickListener(v -> {
+            int adapterPos = holder.getAdapterPosition();
+            if (adapterPos == RecyclerView.NO_POSITION) return;
+
+            TrafficPost currentPost = postList.get(adapterPos);
+
+            // Inflate layout report
+            View dialogView = LayoutInflater.from(context).inflate(R.layout.spinner_report, null);
+
+            AlertDialog dialog = new AlertDialog.Builder(context)
+                    .setView(dialogView)
+                    .create();
+
+            // Ánh xạ view
+            RadioGroup rgReasons = dialogView.findViewById(R.id.rgReasons);
+            View layoutOtherReason = dialogView.findViewById(R.id.layoutOtherReason);
+            TextView etOtherReason = dialogView.findViewById(R.id.etOtherReason);
+            Button btnSubmit = dialogView.findViewById(R.id.btnSubmitReport);
+            ImageButton btnClose = dialogView.findViewById(R.id.btnClose);
+
+            // Xử lý show/hide khi chọn "Khác"
+            rgReasons.setOnCheckedChangeListener((group, checkedId) -> {
+                if (checkedId == R.id.rbOther) {
+                    layoutOtherReason.setVisibility(View.VISIBLE);
+                } else {
+                    layoutOtherReason.setVisibility(View.GONE);
+                }
+            });
+
+            // Nút đóng
+            btnClose.setOnClickListener(x -> dialog.dismiss());
+
+            // Submit báo cáo
+            btnSubmit.setOnClickListener(x -> {
+                int selectedId = rgReasons.getCheckedRadioButtonId();
+                String reason = "";
+
+                if (selectedId == -1) {
+                    Toast.makeText(context, "Vui lòng chọn lý do", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (selectedId == R.id.rbOther) {
+                    reason = etOtherReason.getText().toString().trim();
+                    if (reason.isEmpty()) {
+                        Toast.makeText(context, "Hãy nhập lý do chi tiết", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                } else if (selectedId == R.id.rbFalseInfo) {
+                    reason = "Nội dung sai sự thật";
+                } else if (selectedId == R.id.rbInappropriate) {
+                    reason = "Ngôn ngữ không phù hợp";
+                } else if (selectedId == R.id.rbSpam) {
+                    reason = "Spam / Quảng cáo";
+                }
+
+                // Gọi API report
+                ReportPresenter reportPresenter = new ReportPresenter(context);
+                reportPresenter.reportPost(
+                        currentPost.getIdPost(),
+                        reason,
+                        () -> {
+                            Toast.makeText(context, "Báo cáo thành công!", Toast.LENGTH_SHORT).show();
+                            dialog.dismiss();
+                        },
+                        error -> Toast.makeText(context, error, Toast.LENGTH_SHORT).show()
+                );
+            });
+
+            dialog.show();
+        });
+
+
     }
 
     @Override
