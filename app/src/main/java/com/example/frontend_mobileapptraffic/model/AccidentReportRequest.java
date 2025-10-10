@@ -1,7 +1,7 @@
 package com.example.frontend_mobileapptraffic.model;
 
 public class AccidentReportRequest {
-    private long accidentPostId;
+    private Long accidentPostId;
     private String reason;
 
     public AccidentReportRequest(long accidentPostId, String reason) {
@@ -9,7 +9,7 @@ public class AccidentReportRequest {
         this.reason = reason;
     }
 
-    public long getAccidentPostId() {
+    public Long getAccidentPostId() {
         return accidentPostId;
     }
 

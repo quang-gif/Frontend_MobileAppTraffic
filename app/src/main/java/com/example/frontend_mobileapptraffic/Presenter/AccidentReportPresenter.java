@@ -46,7 +46,7 @@ public class AccidentReportPresenter {
         api = retrofit.create(Api.class);
     }
 
-    public void reportPost(long postId, String reason,
+    public void reportPost(Long postId, String reason,
                            Runnable onSuccess, Consumer<String> onError) {
         SharedPreferences prefs = context.getSharedPreferences("token", Context.MODE_PRIVATE);
         String token = prefs.getString("JWT_TOKEN", null);

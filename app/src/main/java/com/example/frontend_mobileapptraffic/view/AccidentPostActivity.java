@@ -53,7 +53,7 @@ public class AccidentPostActivity extends AppCompatActivity implements AccidentP
 
         // FloatingActionButton → mở CreatePostActivity
         findViewById(R.id.fabAddPost_ap).setOnClickListener(v -> {
-            Intent intent = new Intent(AccidentPostActivity.this, CreatePostActivity.class);
+            Intent intent = new Intent(AccidentPostActivity.this, CreateAccidentPostActivity.class);
             startActivity(intent);
         });
 

@@ -95,17 +95,20 @@ public class AccidentPostPresenter {
                 JSONObject postJson = dataArray.getJSONObject(i);
                 AccidentPost post = new AccidentPost();
 
-                post.setIdAcPost(postJson.optLong("idPost"));
+                post.setIdAcPost(postJson.optLong("id"));
                 post.setContent(postJson.optString("content", ""));
                 post.setLocation(postJson.optString("location", ""));
                 post.setUsername(postJson.optString("username", ""));
                 post.setLikeTotal(postJson.optInt("likeTotal", 0));
+                post.setCreatedAt(postJson.optString("createdAt", ""));
 
                 JSONArray imagesArray = postJson.optJSONArray("imageUrls");
                 if (imagesArray != null) {
                     List<String> imageUrls = new ArrayList<>();
                     for (int j = 0; j < imagesArray.length(); j++) {
-                        imageUrls.add(imagesArray.getString(j));
+                        String imageUrl = imagesArray.getString(j);
+                        imageUrls.add(imageUrl);
+                        Log.d(TAG, "Image URL [" + i + "][" + j + "]: " + imageUrl);
                     }
                     post.setImageUrls(imageUrls);
                 }
@@ -158,7 +161,7 @@ public class AccidentPostPresenter {
         });
     }
 
-    public void createPost(String content, String location,
+    public void createPost(String content, String location, String createdAt,
                            List<File> imageFiles, Runnable onSuccess, Consumer<String> onError) {
 
         String token = getToken();
@@ -172,7 +175,7 @@ public class AccidentPostPresenter {
         if (imageFiles != null) {
             for (File file : imageFiles) {
                 RequestBody requestFile = RequestBody.create(MediaType.parse("image/jpeg"), file);
-                parts.add(MultipartBody.Part.createFormData("file", file.getName(), requestFile));
+                parts.add(MultipartBody.Part.createFormData("files", file.getName(), requestFile));
             }
         }
 
@@ -180,6 +183,7 @@ public class AccidentPostPresenter {
         String accidentPostJson = "{"
                 + "\"content\":\"" + content + "\","
                 + "\"location\":\"" + location + "\","
+                + "\"createdAt\":\"" + createdAt + "\""
                 + "}";
 
         RequestBody accidentPostBody = RequestBody.create(
@@ -194,7 +198,13 @@ public class AccidentPostPresenter {
                     onSuccess.run();
                     loadPosts(); // refresh list
                 } else {
-                    onError.accept("Lỗi server: " + response.code());
+                    try {
+                        String errorBody = response.errorBody() != null ? response.errorBody().string() : "No error body";
+                        Log.e("AccidentPost", "Error: " + response.code() + " - " + errorBody);
+                        onError.accept("Lỗi server: " + response.code() + " - " + errorBody);
+                    } catch (Exception e) {
+                        onError.accept("Lỗi server: " + response.code());
+                    }
                 }
             }
 

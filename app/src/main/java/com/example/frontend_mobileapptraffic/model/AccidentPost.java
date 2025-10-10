@@ -1,9 +1,12 @@
 package com.example.frontend_mobileapptraffic.model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 public class AccidentPost {
-    private Long idAcPost;
+    @SerializedName("id")
+    private Long idPost;
     private String content;
     private String location;
     private String username;
@@ -13,8 +16,8 @@ public class AccidentPost {
 
     private boolean likedByUser;
 
-    public void setIdAcPost(Long idAcPost) {
-        this.idAcPost = idAcPost;
+    public void setIdAcPost(Long idPost) {
+        this.idPost = idPost;
     }
 
     public void setContent(String content) {
@@ -38,7 +41,7 @@ public class AccidentPost {
     }
 
     public Long getIdAcPost() {
-        return idAcPost;
+        return idPost;
     }
 
     public String getContent() {

@@ -140,12 +140,12 @@
             android:paddingVertical="12dp" />
 
         <!-- Thông tin địa chỉ với khung bo góc -->
-        <TextView
+        <AutoCompleteTextView
             android:id="@+id/tvAddress_ap"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Địa chỉ sẽ hiển thị ở đây sau khi chụp ảnh"
+            android:hint="Địa chỉ sẽ hiển thị ở đây sau khi chụp ảnh hoặc tự nhập..."
             android:textColor="@color/text_secondary"
             android:textSize="14sp"
             android:background="@drawable/posttraffic_khung_info"
@@ -156,7 +156,7 @@
             android:id="@+id/tvTime_ap"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Thời gian sẽ hiển thị ở đây"
+            android:hint="Thời gian sẽ hiển thị ở đây"
             android:textColor="@color/text_secondary"
             android:textSize="14sp"
             android:layout_marginTop="8dp"

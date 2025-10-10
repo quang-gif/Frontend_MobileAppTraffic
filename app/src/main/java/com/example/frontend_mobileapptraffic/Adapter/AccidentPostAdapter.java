@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -23,6 +24,9 @@ import com.example.frontend_mobileapptraffic.Presenter.AccidentPostPresenter;
 import com.example.frontend_mobileapptraffic.Presenter.AccidentReportPresenter;
 import com.example.frontend_mobileapptraffic.R;
 import com.example.frontend_mobileapptraffic.model.AccidentPost;
+import com.example.frontend_mobileapptraffic.view.AccidentPostSuccessActivity;
+import com.example.frontend_mobileapptraffic.view.AccidentReportSuccessActivity;
+import com.example.frontend_mobileapptraffic.view.CreateAccidentPostActivity;
 import com.example.frontend_mobileapptraffic.view.FullscreenImageActivity;
 
 import java.util.ArrayList;
@@ -104,6 +108,16 @@ public class AccidentPostAdapter extends RecyclerView.Adapter<AccidentPostAdapte
 
             AccidentPost currentPost = postList.get(adapterPos);
 
+            android.util.Log.e("AccidentPostAdapter", "=== DEBUG POST ===");
+            android.util.Log.e("AccidentPostAdapter", "Position: " + adapterPos);
+            android.util.Log.e("AccidentPostAdapter", "Post ID: " + currentPost.getIdAcPost());
+            android.util.Log.e("AccidentPostAdapter", "Post ID type: " +
+                    (currentPost.getIdAcPost() == null ? "NULL" : currentPost.getIdAcPost().getClass().getSimpleName()));
+            android.util.Log.e("AccidentPostAdapter", "Content: " + currentPost.getContent());
+            android.util.Log.e("AccidentPostAdapter", "Username: " + currentPost.getUsername());
+            android.util.Log.e("AccidentPostAdapter", "==================");
+
+
             // Inflate layout report
             View dialogView = LayoutInflater.from(context).inflate(R.layout.spinner_report, null);
 
@@ -160,8 +174,10 @@ public class AccidentPostAdapter extends RecyclerView.Adapter<AccidentPostAdapte
                         currentPost.getIdAcPost(),
                         reason,
                         () -> {
-                            Toast.makeText(context, "Báo cáo thành công!", Toast.LENGTH_SHORT).show();
+                            long postId = currentPost.getIdAcPost();
                             dialog.dismiss();
+                            Intent intent = new Intent(context, AccidentReportSuccessActivity.class);
+                            context.startActivity(intent);
                         },
                         error -> Toast.makeText(context, error, Toast.LENGTH_SHORT).show()
                 );

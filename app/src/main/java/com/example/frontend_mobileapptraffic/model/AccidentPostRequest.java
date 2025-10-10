@@ -1,6 +1,7 @@
 package com.example.frontend_mobileapptraffic.model;
 
 public class AccidentPostRequest {
+    // note 1
     private String content;
     private String location;
     private String createdAt;
