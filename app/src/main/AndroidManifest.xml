@@ -18,7 +18,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Frontend_MobileAppTraffic">
         <activity
-            android:name=".view.loginactivity"
+            android:name=".violation.MainActivity"
             android:exported="true"
             >
             <intent-filter>
@@ -26,6 +26,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".violation.CaptchaActivity"/>
+        <activity android:name=".violation.ResultActivity"/>
+
+        <activity android:name=".view.CreateAccidentPostActivity"/>
+        <activity
+            android:name=".view.AccidentPostSuccessActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".view.AccidentReportSuccessActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".view.AccidentPostActivity"
+            android:exported="true"/>
+        <!--        <activity android:name=".view.CreatePostActivity" />-->
+
         <activity android:name=".view.chatbotactivity"/>
         <activity android:name=".view.homeactivity"/>
         <activity android:name=".view.useractivity"/>

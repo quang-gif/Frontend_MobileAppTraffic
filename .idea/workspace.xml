@@ -10,6 +10,26 @@
           <theme>@style/Theme.Frontend_MobileAppTraffic</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/drawable/background_gradient.xml">
+        <config>
+          <theme>@style/Theme.Frontend_MobileAppTraffic</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/drawable/background_gradient_modern.xml">
+        <config>
+          <theme>@style/Theme.Frontend_MobileAppTraffic</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/drawable/bg_header_paid.xml">
+        <config>
+          <theme>@style/Theme.Frontend_MobileAppTraffic</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/drawable/bg_header_unpaid.xml">
+        <config>
+          <theme>@style/Theme.Frontend_MobileAppTraffic</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/drawable/button_primary.xml">
         <config>
           <theme>@style/Theme.Frontend_MobileAppTraffic</theme>
@@ -46,6 +66,11 @@
         </config>
       </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_filter.xml">
+        <config>
+          <theme>@style/Theme.Frontend_MobileAppTraffic</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_gallery.xml">
         <config>
           <theme>@style/Theme.Frontend_MobileAppTraffic</theme>
         </config>
@@ -100,12 +125,22 @@
           <theme>@style/Theme.Frontend_MobileAppTraffic</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_success.xml">
+        <config>
+          <theme>@style/Theme.Frontend_MobileAppTraffic</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_thumb_up_filled.xml">
         <config>
           <theme>@style/Theme.Frontend_MobileAppTraffic</theme>
         </config>
       </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_thumb_up_outline.xml">
+        <config>
+          <theme>@style/Theme.Frontend_MobileAppTraffic</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/drawable/icon_gradient_bg.xml">
         <config>
           <theme>@style/Theme.Frontend_MobileAppTraffic</theme>
         </config>
@@ -145,6 +180,21 @@
           <theme>@style/Theme.Frontend_MobileAppTraffic</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/accident_post_success.xml">
+        <config>
+          <theme>@style/Theme.Frontend_MobileAppTraffic</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_accident_post.xml">
+        <config>
+          <theme>@style/Theme.Frontend_MobileAppTraffic</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_captcha.xml">
+        <config>
+          <theme>@style/Theme.Frontend_MobileAppTraffic</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_fullscreen_image.xml">
         <config>
           <theme>@style/Theme.Frontend_MobileAppTraffic</theme>
@@ -161,6 +211,11 @@
         </config>
       </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/create__traffic_post.xml">
+        <config>
+          <theme>@style/Theme.Frontend_MobileAppTraffic</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/create_accident_post.xml">
         <config>
           <theme>@style/Theme.Frontend_MobileAppTraffic</theme>
         </config>
@@ -185,12 +240,27 @@
           <theme>@style/Theme.Frontend_MobileAppTraffic</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_violation_card.xml">
+        <config>
+          <theme>@style/Theme.Frontend_MobileAppTraffic</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/login.xml">
         <config>
           <theme>@style/Theme.Frontend_MobileAppTraffic</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/main.xml">
+        <config>
+          <theme>@style/Theme.Frontend_MobileAppTraffic</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/nav_header.xml">
+        <config>
+          <theme>@style/Theme.Frontend_MobileAppTraffic</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/result_checkviolation.xml">
         <config>
           <theme>@style/Theme.Frontend_MobileAppTraffic</theme>
         </config>
@@ -205,7 +275,17 @@
           <theme>@style/Theme.Frontend_MobileAppTraffic</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/temaccidentpost.xml">
+        <config>
+          <theme>@style/Theme.Frontend_MobileAppTraffic</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/temtrafficpost.xml">
+        <config>
+          <theme>@style/Theme.Frontend_MobileAppTraffic</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/menu/accident_menu.xml">
         <config>
           <theme>@style/Theme.Frontend_MobileAppTraffic</theme>
         </config>
@@ -252,17 +332,56 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c6bbe9d9-dc99-4cab-b774-fb39f033ef21" name="Changes" comment="gay">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/frontend_mobileapptraffic/Presenter/ReportPresenter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/frontend_mobileapptraffic/model/ReportTrafficRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_camera.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/khung_background.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/posttraffic_khung_edt.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/posttraffic_khung_image.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/posttraffic_khung_info.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/posttraficc_dangbai_background_blue.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/rounded_remove_button.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/spinner_report.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/xml/file_paths.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/cpp/CMakeLists.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/cpp/native-keys.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/frontend_mobileapptraffic/Adapter/AccidentPostAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/frontend_mobileapptraffic/KeyProvider.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/frontend_mobileapptraffic/Presenter/AccidentPostPresenter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/frontend_mobileapptraffic/Presenter/AccidentReportPresenter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/frontend_mobileapptraffic/api/OpenCageResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/frontend_mobileapptraffic/api/OpenCageService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/frontend_mobileapptraffic/model/AccidentPost.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/frontend_mobileapptraffic/model/AccidentPostRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/frontend_mobileapptraffic/model/AccidentReportRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/frontend_mobileapptraffic/view/AccidentPostActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/frontend_mobileapptraffic/view/AccidentPostSuccessActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/frontend_mobileapptraffic/view/AccidentReportSuccessActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/frontend_mobileapptraffic/view/CreateAccidentPostActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/frontend_mobileapptraffic/violation/ApiClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/frontend_mobileapptraffic/violation/CaptchaActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/frontend_mobileapptraffic/violation/CaptchaDialog.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/frontend_mobileapptraffic/violation/MainActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/frontend_mobileapptraffic/violation/ResultActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/frontend_mobileapptraffic/violation/Violation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/frontend_mobileapptraffic/violation/ViolationAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/background_gradient.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/background_gradient_modern.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/bg_header_paid.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/bg_header_unpaid.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/bg_status_paid.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/bg_status_unpaid.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/captcha_bg_stroke.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/captcha_container_bg.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/captcha_text_bg.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/card_border.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_arrow_right.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_captcha_placeholder.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_fingerprint.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_gallery.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_lock_small.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_refresh_rounded.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_shield_secure.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_success.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/icon_gradient_bg.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/accident_post_success.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_accident_post.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_captcha.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/create_accident_post.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_violation_card.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/main.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/result_checkviolation.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/temaccidentpost.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/menu/accident_menu.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.13/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.13/checksums/checksums.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.13/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.13/checksums/md5-checksums.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.13/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.13/checksums/sha1-checksums.bin" afterDir="false" />
@@ -274,16 +393,9 @@
       <change beforePath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/deploymentTargetSelector.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deploymentTargetSelector.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/frontend_mobileapptraffic/Activity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/frontend_mobileapptraffic/Adapter/TrafficPostAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/frontend_mobileapptraffic/Adapter/TrafficPostAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/frontend_mobileapptraffic/Presenter/TrafficPostPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/frontend_mobileapptraffic/Presenter/TrafficPostPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/frontend_mobileapptraffic/view/CreatePostActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/frontend_mobileapptraffic/view/CreatePostActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/frontend_mobileapptraffic/view/TrafficPostActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/frontend_mobileapptraffic/view/TrafficPostActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/create__traffic_post.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/create__traffic_post.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_image.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_image.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/temtrafficpost.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/temtrafficpost.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -293,7 +405,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=LocalEmulator, isTemplate=false, identifier=path=C:\Users\ADMIN\.android\avd\Medium_Phone.avd)]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=PhysicalDevice, isTemplate=false, identifier=serial=5PPVV8QCZDLFS8MF)]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -302,8 +414,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="resourceFile" />
         <option value="layoutResourceFile" />
+        <option value="resourceFile" />
         <option value="Class" />
       </list>
     </option>
@@ -311,7 +423,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -322,12 +434,12 @@
     &quot;assignee&quot;: &quot;PhamVanTan74&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/quang-gif/Frontend_MobileAppTraffic&quot;,
-    &quot;accountId&quot;: &quot;2a16e339-f345-4b19-b7e1-6b04df61d3e4&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/quang-gif/Frontend_MobileAppTraffic.git",
+    "accountId": "8a8ed388-5350-4ff9-9534-12df4de903bd"
   }
-}</component>
+}]]></component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -342,35 +454,44 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Android App.Activity.executor&quot;: &quot;Run&quot;,
-    &quot;Android App.app.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;com.google.services.firebase.aqiPopupShown&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/ADMIN/Documents/GitHub/Frontend_MobileAppTraffic&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.17&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Android App.Activity.executor": "Run",
+    "Android App.MainActivity.executor": "Run",
+    "Android App.app.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "com.google.services.firebase.aqiPopupShown": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "D:/Frontend_MobileAppTraffic",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.17",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Frontend_MobileAppTraffic_Clone\app\src\main\java\com\example\frontend_mobileapptraffic" />
+      <recent name="D:\Frontend_MobileAppTraffic_Clone\app\src\main\res\drawable" />
+      <recent name="D:\Frontend_MobileAppTraffic_Clone\app\src\main\res\layout" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/src/main/java/com/example/frontend_mobileapptraffic/" />
       <recent name="C:\Users\ADMIN\Documents\GitHub\Frontend_MobileAppTraffic\app\src\main\res\layout" />
       <recent name="C:\Users\ADMIN\Documents\GitHub\Frontend_MobileAppTraffic\app\src\main\res\values" />
     </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.example.frontend_mobileapptraffic" />
+    </key>
   </component>
-  <component name="RunManager" selected="Android App.app">
+  <component name="RunManager" selected="Android App.MainActivity">
     <configuration name="Activity" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false" temporary="true">
       <module name="Frontend_MobileAppTraffic.app" />
       <option name="ANDROID_RUN_CONFIGURATION_SCHEMA_VERSION" value="1" />
@@ -437,6 +558,78 @@
       <option name="DEEP_LINK" value="" />
       <option name="ACTIVITY" value="" />
       <option name="ACTIVITY_CLASS" value="com.example.frontend_mobileapptraffic.Activity" />
+      <option name="SEARCH_ACTIVITY_IN_GLOBAL_SCOPE" value="false" />
+      <option name="SKIP_ACTIVITY_VALIDATION" value="false" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainActivity" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false" temporary="true">
+      <module name="Frontend_MobileAppTraffic.app" />
+      <option name="ANDROID_RUN_CONFIGURATION_SCHEMA_VERSION" value="1" />
+      <option name="DEPLOY" value="true" />
+      <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
+      <option name="DEPLOY_AS_INSTANT" value="false" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="PM_INSTALL_OPTIONS" value="" />
+      <option name="ALL_USERS" value="false" />
+      <option name="ALWAYS_INSTALL_WITH_PM" value="false" />
+      <option name="ALLOW_ASSUME_VERIFIED" value="false" />
+      <option name="CLEAR_APP_STORAGE" value="false" />
+      <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
+      <option name="ACTIVITY_EXTRA_FLAGS" value="" />
+      <option name="MODE" value="specific_activity" />
+      <option name="RESTORE_ENABLED" value="false" />
+      <option name="RESTORE_FILE" value="" />
+      <option name="RESTORE_FRESH_INSTALL_ONLY" value="false" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
+      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
+      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
+      <option name="DEBUGGER_TYPE" value="Auto" />
+      <Auto>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+        <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+        <option name="DEBUG_SANDBOX_SDK" value="false" />
+      </Auto>
+      <Hybrid>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+        <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+        <option name="DEBUG_SANDBOX_SDK" value="false" />
+      </Hybrid>
+      <Java>
+        <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+        <option name="DEBUG_SANDBOX_SDK" value="false" />
+      </Java>
+      <Native>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+        <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+        <option name="DEBUG_SANDBOX_SDK" value="false" />
+      </Native>
+      <Profilers>
+        <option name="ADVANCED_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Java/Kotlin Method Sample (legacy)" />
+        <option name="STARTUP_NATIVE_MEMORY_PROFILING_ENABLED" value="false" />
+        <option name="NATIVE_MEMORY_SAMPLE_RATE_BYTES" value="2048" />
+      </Profilers>
+      <option name="DEEP_LINK" value="" />
+      <option name="ACTIVITY" value="" />
+      <option name="ACTIVITY_CLASS" value="com.example.frontend_mobileapptraffic.violation.MainActivity" />
       <option name="SEARCH_ACTIVITY_IN_GLOBAL_SCOPE" value="false" />
       <option name="SKIP_ACTIVITY_VALIDATION" value="false" />
       <method v="2">
@@ -517,6 +710,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Android App.MainActivity" />
         <item itemvalue="Android App.Activity" />
         <item itemvalue="Android App.Activity" />
       </list>
@@ -542,14 +736,24 @@
   <component name="play_dynamic_filters_status">
     <option name="appIdToCheckInfo">
       <map>
+        <entry key="com.example.duan">
+          <value>
+            <CheckInfo lastCheckTimestamp="1760109399959" />
+          </value>
+        </entry>
+        <entry key="com.example.duan.test">
+          <value>
+            <CheckInfo lastCheckTimestamp="1760109400007" />
+          </value>
+        </entry>
         <entry key="com.example.frontend_mobileapptraffic">
           <value>
-            <CheckInfo lastCheckTimestamp="1759153388578" />
+            <CheckInfo lastCheckTimestamp="1760109511431" />
           </value>
         </entry>
         <entry key="com.example.frontend_mobileapptraffic.test">
           <value>
-            <CheckInfo lastCheckTimestamp="1759153388577" />
+            <CheckInfo lastCheckTimestamp="1760109511308" />
           </value>
         </entry>
       </map>

@@ -14,6 +14,16 @@ android {
         versionName = "1.0"
         buildConfigField("String", "BASE_URL", "\"http://192.168.0.148:8080/\"")
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        ndk {
+            abiFilters += listOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64")
+        }
+    }
+    externalNativeBuild {
+        cmake {
+            path = file("src/main/cpp/CMakeLists.txt")
+            version = "3.22.1"
+        }
     }
     buildFeatures {
         buildConfig = true
@@ -36,6 +46,7 @@ android {
 
 dependencies {
     implementation("com.google.android.material:material:1.8.0")
+    implementation("com.google.android.libraries.places:places:3.2.0")
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.swiperefreshlayout)
