@@ -85,7 +85,6 @@ public class TrafficPostPresenter {
 
         api = retrofit.create(Api.class);
     }
-
     // --------- Load posts ---------
     public void loadPosts() {
         String token = getToken();
