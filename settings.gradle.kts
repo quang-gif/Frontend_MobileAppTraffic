@@ -19,6 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Frontend_MobileAppTraffic"
+rootProject.name = "DUAN"
 include(":app")
  

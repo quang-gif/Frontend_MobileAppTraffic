@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="20dp"
+    android:layout_marginTop="20dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="6dp"
+    app:cardBackgroundColor="@android:color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Header section -->
+        <LinearLayout
+            android:id="@+id/headerLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="16dp">
+
+            <!-- Cột trái: Lỗi + Thời gian -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/tvTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Lỗi 1"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/tvTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Vi phạm lúc: 03:03, 05/07/2024"
+                    android:textSize="12sp"
+                    android:textColor="#666666"
+                    android:layout_marginTop="2dp" />
+            </LinearLayout>
+
+            <!-- Cột phải: trạng thái -->
+            <TextView
+                android:id="@+id/tvStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Chưa xử phạt"
+                android:textSize="12sp"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="4dp"
+                android:background="@drawable/bg_status_unpaid"
+                android:textColor="@color/error_color"
+                android:textAllCaps="false"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Content section -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Địa điểm vi phạm header -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Địa điểm vi phạm"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="@color/black" />
+
+            <!-- Địa điểm vi phạm content -->
+            <TextView
+                android:id="@+id/tvLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Quốc lộ 1 KCN Tân Tạo (10.7428064; 106.5978913) - AL, Quốc Lộ 1 - Tp. Hồ Chí Minh"
+                android:layout_marginTop="4dp"
+                android:textColor="@color/secondary_text"
+                android:lineSpacingExtra="2dp" />
+
+            <!-- Divider -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#E0E0E0"
+                android:layout_marginVertical="12dp" />
+
+            <!-- Thông tin phương tiện header -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thông tin phương tiện"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="@color/black" />
+
+            <!-- Thông tin phương tiện content -->
+            <TextView
+                android:id="@+id/tvLicensePlate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Biển số: ..."
+                android:layout_marginTop="4dp"
+                android:textColor="@color/secondary_text" />
+
+            <TextView
+                android:id="@+id/tvPlateColor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Màu biển: ..."
+                android:layout_marginTop="4dp"
+                android:textColor="@color/secondary_text" />
+
+            <TextView
+                android:id="@+id/tvVehicleType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Loại phương tiện: ..."
+                android:layout_marginTop="4dp"
+                android:textColor="@color/secondary_text" />
+
+            <!-- Divider -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#E0E0E0"
+                android:layout_marginVertical="12dp" />
+
+            <!-- Hành vi vi phạm header -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hành vi vi phạm"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="@color/black" />
+
+            <!-- Hành vi vi phạm content -->
+            <TextView
+                android:id="@+id/tvBehavior"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12321.5.3.a.01.Điều khiển xe chạy quá tốc độ quy định từ 05 km/h đến dưới 10 km/h"
+                android:layout_marginTop="4dp"
+                android:textColor="@color/secondary_text"
+                android:lineSpacingExtra="2dp" />
+
+            <!-- Divider -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#E0E0E0"
+                android:layout_marginVertical="12dp" />
+
+            <!-- Đơn vị phát hiện header -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Đơn vị phát hiện"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="@color/black" />
+
+            <!-- Đơn vị phát hiện content -->
+            <TextView
+                android:id="@+id/tvDetectedBy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cục Cảnh sát giao thông"
+                android:layout_marginTop="4dp"
+                android:textColor="@color/secondary_text"
+                android:lineSpacingExtra="2dp" />
+
+            <!-- Divider -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#E0E0E0"
+                android:layout_marginVertical="12dp" />
+
+            <!-- Nơi giải quyết header -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nơi giải quyết"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="@color/black" />
+
+            <!-- Nơi giải quyết content -->
+            <TextView
+                android:id="@+id/tvPaymentPlaces"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nơi giải quyết: ..."
+                android:layout_marginTop="4dp"
+                android:textColor="@color/secondary_text"
+                android:lineSpacingExtra="2dp" />
+
+            <!-- Nguồn thông tin -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nguồn: Cổng thông tin điện tử Cục Cảnh sát giao thông"
+                android:layout_marginTop="12dp"
+                android:textSize="12sp"
+                android:textColor="#666666"
+                android:textStyle="italic" />
+
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
