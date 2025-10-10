@@ -22,7 +22,7 @@ public class TrafficPostActivity extends AppCompatActivity implements TrafficPos
 
     private RecyclerView recyclerView;
     private TrafficPostAdapter adapter;
-    private List<TrafficPost> postList = new ArrayList<>();
+    private final List<TrafficPost> postList = new ArrayList<>();
     private TrafficPostPresenter presenter;
     private MaterialToolbar topAppBar;
 
@@ -31,10 +31,10 @@ public class TrafficPostActivity extends AppCompatActivity implements TrafficPos
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activitytrafficpost);
 
-        // Init Presenter trước
+        // Khởi tạo Presenter
         presenter = new TrafficPostPresenter(this, this);
 
-        // RecyclerView
+        // Setup RecyclerView
         recyclerView = findViewById(R.id.recyclerViewPosts);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new TrafficPostAdapter(this, postList, presenter);
@@ -44,24 +44,24 @@ public class TrafficPostActivity extends AppCompatActivity implements TrafficPos
         topAppBar = findViewById(R.id.toolbar);
         topAppBar.setNavigationOnClickListener(v -> finish());
 
-        // FloatingActionButton → mở CreatePostActivity
+        // FloatingActionButton → mở màn hình đăng bài
         findViewById(R.id.fabAddPost).setOnClickListener(v -> {
             Intent intent = new Intent(TrafficPostActivity.this, CreatePostActivity.class);
             startActivity(intent);
         });
 
-        // Load bài viết
+        // Gọi API load danh sách bài viết
         presenter.loadPosts();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        // Mỗi lần quay lại màn hình sẽ reload post mới
+        // Mỗi khi quay lại màn hình thì reload lại danh sách
         presenter.loadPosts();
     }
 
-    // -------------------- Interface Implement --------------------
+    // -------------------- TrafficPostView implement --------------------
 
     @Override
     public void onPostsLoaded(List<TrafficPost> posts) {
@@ -77,13 +77,13 @@ public class TrafficPostActivity extends AppCompatActivity implements TrafficPos
 
     @Override
     public void onPostLiked(int position) {
-        // Sau khi backend xử lý xong → refresh lại danh sách
-        presenter.loadPosts();
+        presenter.loadPosts(); // refresh like count
     }
 
     @Override
     public void onPostReported(int position) {
-        Toast.makeText(this, "Đã báo cáo bài viết " + position, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Đã báo cáo bài viết #" + position, Toast.LENGTH_SHORT).show();
+        presenter.loadPosts(); // reload sau khi report
     }
 
     @Override

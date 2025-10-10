@@ -38,7 +38,7 @@ public class ChatbotPresenter {
         OkHttpClient client = new OkHttpClient.Builder().build();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)   // ví dụ: http://192.168.0.148:8080/
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build();
