@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp"
+    android:background="@drawable/background_gradient_modern">
+
+    <!-- Header với icon động -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginBottom="32dp">
+
+        <!-- Icon bảo mật với background gradient -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            app:cardCornerRadius="40dp"
+            app:cardElevation="8dp"
+            android:layout_marginBottom="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/icon_gradient_bg"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:src="@drawable/ic_shield_secure"
+                    app:tint="@android:color/white" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <!-- Tiêu đề -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Xác Minh Bảo Mật"
+            android:textColor="@color/primary_dark"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Mô tả -->
+        <TextView
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:text="Nhập mã xác thực hiển thị bên dưới để tiếp tục tra cứu"
+            android:textColor="@color/secondary_text"
+            android:textSize="14sp"
+            android:gravity="center"
+            android:lineSpacingExtra="4dp" />
+
+    </LinearLayout>
+
+    <!-- CardView chứa toàn bộ captcha -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="24dp"
+        app:cardElevation="16dp"
+        app:cardBackgroundColor="@android:color/white"
+        android:layout_marginBottom="24dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="28dp"
+            android:gravity="center">
+
+            <!-- Hiển thị mã captcha với hiệu ứng đặc biệt -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_marginBottom="28dp"
+                android:padding="20dp"
+                android:background="@drawable/captcha_container_bg">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mã xác thực"
+                    android:textColor="@color/secondary_text"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="8dp"
+                    android:letterSpacing="0.1" />
+
+                <ImageView
+                    android:id="@+id/imgCaptcha"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:scaleType="fitCenter"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mã có hiệu lực trong 5 phút"
+                    android:textColor="@color/accent_color"
+                    android:textSize="10sp"
+                    android:layout_marginTop="8dp" />
+
+            </LinearLayout>
+
+            <!-- Input captcha với Material Design nâng cao -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                app:boxCornerRadiusTopStart="16dp"
+                app:boxCornerRadiusTopEnd="16dp"
+                app:boxCornerRadiusBottomStart="16dp"
+                app:boxCornerRadiusBottomEnd="16dp"
+                app:boxBackgroundColor="@color/input_background"
+                app:boxStrokeColor="@color/primary_color"
+                app:boxStrokeWidth="1.5dp"
+                app:hintTextColor="@color/primary_color"
+                app:startIconDrawable="@drawable/ic_fingerprint"
+                app:startIconTint="@color/primary_color"
+                app:endIconMode="clear_text"
+                app:endIconTint="@color/secondary_text"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                <EditText
+                    android:id="@+id/edtCaptcha"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Nhập mã xác thực"
+                    android:inputType="textCapCharacters"
+                    android:textSize="16sp"
+                    android:maxLength="6"
+                    android:padding="18dp"
+                    android:background="@android:color/transparent"
+                    android:textColor="@color/text_primary"
+                    android:textStyle="bold" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <!-- Nút xác nhận với gradient -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnXacNhan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Xác Nhận &amp; Tra Cứu"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:paddingVertical="20dp"
+        app:cornerRadius="16dp"
+        app:backgroundTint="@color/primary_color"
+        app:icon="@drawable/ic_arrow_right"
+        app:iconGravity="textEnd"
+        app:iconPadding="8dp"
+        app:iconTint="@android:color/white"
+        android:elevation="8dp"
+        android:stateListAnimator="@null" />
+
+    <!-- Footer -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="3dp"
+        android:layout_marginTop="20dp"
+        android:drawableStart="@drawable/ic_lock_small"
+        android:drawablePadding="6dp"
+        android:gravity="center"
+        android:text="Bảo mật thông tin của bạn là ưu tiên hàng đầu"
+        android:textColor="@color/secondary_text"
+        android:textSize="11sp" />
+
+</LinearLayout>

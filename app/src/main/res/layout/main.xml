@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:gravity="center_horizontal"
+    android:background="@color/white">
+
+    <!-- Tiêu đề -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tra Cứu Phạt Nguội"
+        android:textColor="@color/primary_color"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="32dp" />
+
+    <!-- CardView chứa form -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp"
+        app:cardBackgroundColor="@android:color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <!-- Spinner chọn loại xe -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutLoaiXe"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Chọn loại xe"
+                app:boxCornerRadiusTopStart="12dp"
+                app:boxCornerRadiusTopEnd="12dp"
+                app:boxCornerRadiusBottomStart="12dp"
+                app:boxCornerRadiusBottomEnd="12dp"
+                app:boxStrokeColor="@color/primary_color">
+
+                <Spinner
+                    android:id="@+id/spinnerLoaiXe"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:spinnerMode="dropdown"
+                    android:background="@android:color/transparent"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+            <!-- Textbox nhập biển số -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutBienSo"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nhập biển số xe"
+                android:layout_marginTop="20dp"
+                app:boxCornerRadiusTopStart="12dp"
+                app:boxCornerRadiusTopEnd="12dp"
+                app:boxCornerRadiusBottomStart="12dp"
+                app:boxCornerRadiusBottomEnd="12dp"
+                app:boxStrokeColor="@color/primary_color">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edtPlate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textCapCharacters"
+                    android:textSize="16sp"
+                    android:padding="12dp"
+                    android:background="@null" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Nút tra cứu -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnTraCuu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tra Cứu Ngay"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:paddingVertical="16dp"
+        app:cornerRadius="12dp"
+        app:backgroundTint="@color/primary_color"
+        android:layout_marginTop="8dp" />
+
+    <!-- Footer -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hệ thống tra cứu phạt nguội chính xác và nhanh chóng"
+        android:textColor="@color/secondary_text_color"
+        android:textSize="12sp"
+        android:layout_marginTop="10dp"
+        android:gravity="center" />
+
+</LinearLayout>
